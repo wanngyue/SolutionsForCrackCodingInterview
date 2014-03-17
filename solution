@@ -1,0 +1,37 @@
+package test;
+
+import java.util.Scanner;
+
+public class Solution {
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int input = in.nextInt();
+		
+		if(input < 1){
+			System.out.println("input should > 0");
+			return;
+		}
+		
+		int[][] array = new int[2*input - 1][2*input - 1];
+		
+		for(int level = input; level > 0;--level){
+			for(int line = input - level; line <= input + level - 2;++line){
+				if(line == input - level || line == input + level - 2){
+					for(int row = input - level; row <= input + level - 2;++row){
+						array[line][row] = level;
+					}
+				}else{
+					array[line][input - level] = level;
+					array[line][input + level - 2] = level;
+				}
+			}
+		}
+		
+		for(int i = 0;i < 2*input - 1;++i){
+			for(int j = 0;j < 2*input - 1;++j){
+				System.out.print(array[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+}
